@@ -5,7 +5,7 @@
     "metadata": {
       "pipeline_name": "pipedream",
       "orchestration": "aws_stepfunctions",
-      "role_arn": "arn:aws:iam::296274010522:role/pipedream/PipedreamStepFunctionsRole",
+      "role_arn": "arn:aws:iam::{{aws-account}}:role/pipedream/PipedreamStepFunctionsRole",
       "state": {
         "arn": null
       }
@@ -31,7 +31,7 @@
         "properties": {
           "Name": "pipedream-extract-main",
           "Description": "",
-          "Role": "arn:aws:iam::296274010522:role/pipedream/PipedreamGlueRole",
+          "Role": "arn:aws:iam::{{aws-account}}:role/pipedream/PipedreamGlueRole",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
@@ -39,7 +39,7 @@
             "PythonVersion": "3"
           },
           "DefaultArguments": {
-            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--TempDir": "s3://aws-glue-assets-{{aws-account}}-eu-west-1/temporary/",
             "--class": "GlueApp",
             "--enable-continuous-cloudwatch-log": "true",
             "--enable-glue-datacatalog": "true",
@@ -48,7 +48,7 @@
             "--enable-spark-ui": "true",
             "--job-bookmark-option": "job-bookmark-enable",
             "--job-language": "python",
-            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/",
+            "--spark-event-logs-path": "s3://aws-glue-assets-{{aws-account}}-eu-west-1/sparkHistoryLogs/",
             "--SOURCE_S3_PATH": "s3://aws-glue-pipedream-test-bucket/main/data/raw/"
           },
 
@@ -71,7 +71,7 @@
         "properties": {
           "Name": "pipedream-transform-main",
           "Description": "",
-          "Role": "arn:aws:iam::296274010522:role/pipedream/PipedreamGlueRole",
+          "Role": "arn:aws:iam::{{aws-account}}:role/pipedream/PipedreamGlueRole",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
@@ -79,7 +79,7 @@
             "PythonVersion": "3"
           },
           "DefaultArguments": {
-            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--TempDir": "s3://aws-glue-assets-{{aws-account}}-eu-west-1/temporary/",
             "--class": "GlueApp",
             "--enable-continuous-cloudwatch-log": "true",
             "--enable-glue-datacatalog": "true",
@@ -88,7 +88,7 @@
             "--enable-spark-ui": "true",
             "--job-bookmark-option": "job-bookmark-enable",
             "--job-language": "python",
-            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/"
+            "--spark-event-logs-path": "s3://aws-glue-assets-{{aws-account}}-eu-west-1/sparkHistoryLogs/"
           },
 
           "MaxRetries": 3,
@@ -110,7 +110,7 @@
         "properties": {
           "Name": "pipedream-load-main",
           "Description": "",
-          "Role": "arn:aws:iam::296274010522:role/pipedream/PipedreamGlueRole",
+          "Role": "arn:aws:iam::{{aws-account}}:role/pipedream/PipedreamGlueRole",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
@@ -118,7 +118,7 @@
             "PythonVersion": "3"
           },
           "DefaultArguments": {
-            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--TempDir": "s3://aws-glue-assets-{{aws-account}}-eu-west-1/temporary/",
             "--class": "GlueApp",
             "--enable-continuous-cloudwatch-log": "true",
             "--enable-glue-datacatalog": "true",
@@ -127,7 +127,7 @@
             "--enable-spark-ui": "true",
             "--job-bookmark-option": "job-bookmark-enable",
             "--job-language": "python",
-            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/"
+            "--spark-event-logs-path": "s3://aws-glue-assets-{{aws-account}}-eu-west-1/sparkHistoryLogs/"
           },
 
           "MaxRetries": 3,
