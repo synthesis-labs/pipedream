@@ -1,0 +1,203 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {
+    "metadata": {
+      "pipeline_name": "pipedream",
+      "orchestration": "aws_stepfunctions",
+      "role_arn": "arn:aws:iam::296274010522:role/PipedreamStepFunctionRole",
+      "state": {
+        "arn": null
+      }
+    }
+  },
+  "nodes": [
+    {
+      "metadata": {
+        "trigger": "MANUAL",
+        "operation": "NOOP",
+        "properties": {}
+      },
+      "id": "start"
+    },
+    {
+      "id": "extract",
+      "metadata": {
+        "operation": "glue",
+        "trigger": "ALL",
+        "output_data": {
+          "bronze": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/bronze/"
+        },
+        "properties": {
+          "Name": "pipedream-extract-{branch-name}",
+          "Description": "",
+          "Role": "arn:aws:iam::296274010522:role/AWSGlueRDSMigrationRole",
+          "CreatedOn": "2022-06-02 16:33:27.849000+02:00",
+          "LastModifiedOn": "2022-06-02 16:33:27.849000+02:00",
+          "ExecutionProperty": { "MaxConcurrentRuns": 1 },
+          "Command": {
+            "Name": "glueetl",
+            "ScriptLocation": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/scripts/pipedream-extract-main.py",
+            "PythonVersion": "3"
+          },
+          "DefaultArguments": {
+            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--class": "GlueApp",
+            "--enable-continuous-cloudwatch-log": "true",
+            "--enable-glue-datacatalog": "true",
+            "--enable-job-insights": "true",
+            "--enable-metrics": "true",
+            "--enable-spark-ui": "true",
+            "--job-bookmark-option": "job-bookmark-enable",
+            "--job-language": "python",
+            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/"
+          },
+          
+          "job_params": {
+            "--SOURCE_S3_PATH": "s3://hb-machine-learning-bucket/data-migration/data/category/ExtractDate=2022-05-20/"
+          },
+          "MaxRetries": 3,
+          "AllocatedCapacity": 10,
+          "Timeout": 2880,
+          "MaxCapacity": 10.0,
+          "WorkerType": "G.1X",
+          "NumberOfWorkers": 10,
+          "GlueVersion": "3.0"
+        }
+      }
+    },
+    {
+      "id": "transform",
+      "metadata": {
+        "operation": "glue",
+        "trigger": "ALL",
+        "output_data": {
+            "silver": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/silver/"
+          },
+        "properties": {
+          "Name": "pipedream-transform-{branch-name}",
+          "Description": "",
+          "Role": "arn:aws:iam::296274010522:role/AWSGlueRDSMigrationRole",
+          "CreatedOn": "2022-06-02 16:36:44.887000+02:00",
+          "LastModifiedOn": "2022-06-02 17:16:54.650000+02:00",
+          "ExecutionProperty": { "MaxConcurrentRuns": 1 },
+          "Command": {
+            "Name": "glueetl",
+            "ScriptLocation": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/scripts/pipedream-transform-main.py",
+            "PythonVersion": "3"
+          },
+          "DefaultArguments": {
+            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--class": "GlueApp",
+            "--enable-continuous-cloudwatch-log": "true",
+            "--enable-glue-datacatalog": "true",
+            "--enable-job-insights": "true",
+            "--enable-metrics": "true",
+            "--enable-spark-ui": "true",
+            "--job-bookmark-option": "job-bookmark-enable",
+            "--job-language": "python",
+            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/"
+          },
+          
+          "job_params": {},
+          "MaxRetries": 3,
+          "AllocatedCapacity": 10,
+          "Timeout": 2880,
+          "MaxCapacity": 10.0,
+          "WorkerType": "G.1X",
+          "NumberOfWorkers": 10,
+          "GlueVersion": "3.0"
+        }
+      }
+    },
+    {
+      "id": "load",
+      "metadata": {
+        "operation": "glue",
+        "trigger": "ALL",
+        "output_data": {
+            "gold": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/gold/"
+          },
+        "properties": {
+          "Name": "pipedream-load-{branch-name}",
+          "Description": "",
+          "Role": "arn:aws:iam::296274010522:role/AWSGlueRDSMigrationRole",
+          "CreatedOn": "2022-06-02 16:39:04.196000+02:00",
+          "LastModifiedOn": "2022-06-02 16:39:04.196000+02:00",
+          "ExecutionProperty": { "MaxConcurrentRuns": 1 },
+          "Command": {
+            "Name": "glueetl",
+            "ScriptLocation": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/scripts/pipedream-load-main.py",
+            "PythonVersion": "3"
+          },
+          "DefaultArguments": {
+            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--class": "GlueApp",
+            "--enable-continuous-cloudwatch-log": "true",
+            "--enable-glue-datacatalog": "true",
+            "--enable-job-insights": "true",
+            "--enable-metrics": "true",
+            "--enable-spark-ui": "true",
+            "--job-bookmark-option": "job-bookmark-enable",
+            "--job-language": "python",
+            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/"
+          },
+          
+          "job_params": {},
+          "MaxRetries": 3,
+          "AllocatedCapacity": 10,
+          "Timeout": 2880,
+          "MaxCapacity": 10.0,
+          "WorkerType": "G.1X",
+          "NumberOfWorkers": 10,
+          "GlueVersion": "3.0"
+        }
+      }
+    },
+
+    {
+      "metadata": {
+        "operation": "NOOP",
+        "properties": {}
+      },
+      "id": "stop"
+    }
+  ],
+  "links": [
+    {
+      "source": "start",
+      "target": "extract",
+      "directed": true,
+      "metadata": {
+        "data": [],
+        "crawl_data": false
+      }
+    },
+    {
+      "source": "extract",
+      "target": "transform",
+      "directed": true,
+      "metadata": {
+        "data": ["bronze"],
+        "crawl_data": false
+      }
+    },
+    {
+      "source": "transform",
+      "target": "load",
+      "directed": true,
+      "metadata": {
+        "data": ["silver"],
+        "crawl_data": false
+      }
+    },
+    {
+      "source": "load",
+      "target": "stop",
+      "directed": true,
+      "metadata": {
+        "crawl_data": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+networkx
+matplotlib
+boto3
+s3fs==0.4.2
+prettytable
+pandas
+pyarrow
+pytest
+pytest-mock
