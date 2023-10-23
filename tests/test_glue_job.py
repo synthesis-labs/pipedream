@@ -64,20 +64,18 @@ class WhenCallingGetJobsGivenValidQueryStringAndJobNameIsReturnedThenTest(unitte
                 {
                     "Name": "cloudtrail_bp_test_post_etl_f3e9473f",
                     "Description": "A job to change state to COMPLETED",
-                    "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+                    "Role": "arn:aws:iam::{aws-account-number}:role/service-role/AWSGlueServiceRole-test",
                     "ExecutionProperty": {"MaxConcurrentRuns": 1},
                     "Command": {
                         "Name": "pythonshell",
-                        "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/pythonshell/state_manager.py",
+                        "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/pythonshell/state_manager.py",
                         "PythonVersion": "2",
                     },
-                    "MaxRetries": 0,
                     "AllocatedCapacity": 0,
+                    "MaxRetries": 0,
                     "Timeout": 2880,
                     "MaxCapacity": 0.0625,
                     "GlueVersion": "1.0",
-                    "CreatedOn": "2022-06-02 16:36:44.887000+02:00",
-                    "LastModifiedOn": "2022-06-02 17:16:54.650000+02:00",
                 }
             ]
         }
@@ -96,17 +94,15 @@ class WhenCallingGetJobsGivenValidQueryStringAndJobNameIsReturnedThenTest(unitte
             {
                 "Name": "cloudtrail_bp_test_post_etl_f3e9473f",
                 "Description": "A job to change state to COMPLETED",
-                "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+                "Role": "arn:aws:iam::{aws-account-number}:role/service-role/AWSGlueServiceRole-test",
                 "ExecutionProperty": {"MaxConcurrentRuns": 1},
                 "Command": {
                     "Name": "pythonshell",
-                    "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/pythonshell/state_manager.py",
+                    "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/pythonshell/state_manager.py",
                     "PythonVersion": "2",
                 },
                 "MaxRetries": 0,
-                "AllocatedCapacity": 0,
                 "Timeout": 2880,
-                "MaxCapacity": 0.0625,
                 "GlueVersion": "1.0",
             }
         ]

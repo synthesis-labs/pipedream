@@ -11,7 +11,7 @@ def s3_parquet_to_pd(s3_path):
     ----------
     s3_path : str
         Path to s3 bucket containing .parquet files. Consider an example s3_path,
-        s3://hb-machine-learning-bucket/pipedream/main/data/gold, containing .parquet 
+        s3://hb-machine-learning-bucket/pypedream/main/data/gold, containing .parquet 
         files in the structure illustrated below:
             gold
             ├── part-00000-4b7cdc90-5156-46c5-b4c5-305b2b2cc4ef-c000.snappy.parquet
@@ -80,6 +80,6 @@ def calculate_delta(df1, df2, primary_key, ignored_columns=[]):
     return (added_cols,removed_cols,df)
 
 
-# df1 = pd_from_s3_parquet('s3://hb-machine-learning-bucket/pipedream/main/data/gold/')
-# df1 = pd_from_s3_parquet('s3://hb-machine-learning-bucket/pipedream/main/data/gold/')
+# df1 = pd_from_s3_parquet('s3://hb-machine-learning-bucket/pypedream/main/data/gold/')
+# df1 = pd_from_s3_parquet('s3://hb-machine-learning-bucket/pypedream/main/data/gold/')
 

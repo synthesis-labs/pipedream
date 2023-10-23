@@ -5,11 +5,11 @@ class WhenCallingCreateGraphFromGlueJobsGivenAValidListOfJobs(unittest.TestCase)
         glue_jobs = [
             {
                 "Name": "Flights Conversion",
-                "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-DefaultRole1",
+                "Role": "arn:aws:iam::{aws-account-number}}:role/service-role/AWSGlueServiceRole-DefaultRole1",
                 "ExecutionProperty": {"MaxConcurrentRuns": 1},
                 "Command": {
                     "Name": "glueetl",
-                    "ScriptLocation": "s3://aws-glue-scripts-296274010522-eu-west-1/admin/tutorial-script",
+                    "ScriptLocation": "s3://aws-glue-scripts-{aws-account-number}}-eu-west-1/admin/tutorial-script",
                     "PythonVersion": "3",
                 },
                 "MaxRetries": 0,
@@ -23,11 +23,11 @@ class WhenCallingCreateGraphFromGlueJobsGivenAValidListOfJobs(unittest.TestCase)
             {
                 "Name": "cloudtrail_bp_test_post_etl_f3e9473f",
                 "Description": "A job to change state to COMPLETED",
-                "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+                "Role": "arn:aws:iam::{aws-account-number}}:role/service-role/AWSGlueServiceRole-test",
                 "ExecutionProperty": {"MaxConcurrentRuns": 1},
                 "Command": {
                     "Name": "pythonshell",
-                    "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/pythonshell/state_manager.py",
+                    "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/pythonshell/state_manager.py",
                     "PythonVersion": "2",
                 },
                 "MaxRetries": 0,

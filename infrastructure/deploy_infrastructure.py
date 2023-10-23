@@ -7,7 +7,7 @@ import s3fs
 import boto3
 
 PATH_TO_TEST_JOB_JSON = "infrastructure/jobs.json"
-PATH_TO_SCRIPTS_AND_DATA = "infrastructure/pipedream/main"
+PATH_TO_SCRIPTS_AND_DATA = "infrastructure/pypedream/main"
 
 def main():
     session = boto3.session.Session()
@@ -18,7 +18,7 @@ def main():
     s3_filesystem = s3fs.S3FileSystem()
     s3_manager = S3Manager(s3_client, s3_filesystem)
 
-    bucket_name = "aws-glue-pipedream-test-bucket"
+    bucket_name = "{aws-glue-pypedream-test-bucket}"
     #PATH_TO_SCRIPTS_AND_DATA = ""
 
     s3_manager.create_bucket(bucket_name)

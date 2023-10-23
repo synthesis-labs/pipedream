@@ -3,9 +3,9 @@
   "multigraph": false,
   "graph": {
     "metadata": {
-      "pipeline_name": "pipedream",
+      "pipeline_name": "pypedream",
       "orchestration": "aws_stepfunctions",
-      "role_arn": "arn:aws:iam::{{aws-account}}:role/pipedream/PipedreamStepFunctionsRole",
+      "role_arn": "arn:aws:iam::{{aws-account}}:role/pypedream/PypedreamStepFunctionsRole",
       "state": {
         "arn": null
       }
@@ -26,16 +26,16 @@
         "operation": "glue",
         "trigger": "ALL",
         "output_data": {
-          "bronze": "s3://aws-glue-pipedream-test-bucket/main/data/bronze/"
+          "bronze": "s3://{aws-glue-pypedream-test-bucket}/main/data/bronze/"
         },
         "properties": {
-          "Name": "pipedream-extract-main",
+          "Name": "pypedream-extract-main",
           "Description": "",
-          "Role": "arn:aws:iam::{{aws-account}}:role/pipedream/PipedreamGlueRole",
+          "Role": "arn:aws:iam::{{aws-account}}:role/pypedream/PypedreamGlueRole",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
-            "ScriptLocation": "s3://aws-glue-pipedream-test-bucket/main/scripts/pipedream-extract-main.py",
+            "ScriptLocation": "s3://{aws-glue-pypedream-test-bucket}/main/scripts/pypedream-extract-main.py",
             "PythonVersion": "3"
           },
           "DefaultArguments": {
@@ -49,7 +49,7 @@
             "--job-bookmark-option": "job-bookmark-enable",
             "--job-language": "python",
             "--spark-event-logs-path": "s3://aws-glue-assets-{{aws-account}}-eu-west-1/sparkHistoryLogs/",
-            "--SOURCE_S3_PATH": "s3://aws-glue-pipedream-test-bucket/main/data/raw/"
+            "--SOURCE_S3_PATH": "s3://{aws-glue-pypedream-test-bucket}/main/data/raw/"
           },
 
           "MaxRetries": 3,
@@ -66,16 +66,16 @@
         "operation": "glue",
         "trigger": "ALL",
         "output_data": {
-          "silver": "s3://aws-glue-pipedream-test-bucket/main/data/silver/"
+          "silver": "s3://{aws-glue-pypedream-test-bucket}/main/data/silver/"
         },
         "properties": {
-          "Name": "pipedream-transform-main",
+          "Name": "pypedream-transform-main",
           "Description": "",
-          "Role": "arn:aws:iam::{{aws-account}}:role/pipedream/PipedreamGlueRole",
+          "Role": "arn:aws:iam::{{aws-account}}:role/pypedream/PypedreamGlueRole",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
-            "ScriptLocation": "s3://aws-glue-pipedream-test-bucket/main/scripts/pipedream-transform-main.py",
+            "ScriptLocation": "s3://{aws-glue-pypedream-test-bucket}/main/scripts/pypedream-transform-main.py",
             "PythonVersion": "3"
           },
           "DefaultArguments": {
@@ -105,16 +105,16 @@
         "operation": "glue",
         "trigger": "ALL",
         "output_data": {
-          "gold": "s3://aws-glue-pipedream-test-bucket/main/data/gold/"
+          "gold": "s3://{aws-glue-pypedream-test-bucket}/main/data/gold/"
         },
         "properties": {
-          "Name": "pipedream-load-main",
+          "Name": "pypedream-load-main",
           "Description": "",
-          "Role": "arn:aws:iam::{{aws-account}}:role/pipedream/PipedreamGlueRole",
+          "Role": "arn:aws:iam::{{aws-account}}:role/pypedream/PypedreamGlueRole",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
-            "ScriptLocation": "s3://aws-glue-pipedream-test-bucket/main/scripts/pipedream-load-main.py",
+            "ScriptLocation": "s3://{aws-glue-pypedream-test-bucket}/main/scripts/pypedream-load-main.py",
             "PythonVersion": "3"
           },
           "DefaultArguments": {

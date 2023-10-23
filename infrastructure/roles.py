@@ -4,8 +4,8 @@ def deploy_roles():
     client = boto3.client('iam')
 
     glue_role_response = client.create_role(
-        Path='/pipedream/',
-        RoleName='PipedreamGlueRole',
+        Path='/pypedream/',
+        RoleName='PypedreamGlueRole',
         AssumeRolePolicyDocument="""{
         "Version": "2012-10-17",
         "Statement": [
@@ -24,20 +24,20 @@ def deploy_roles():
         Tags=[
             {
                 'Key': 'CreatedBy',
-                'Value': 'Pipedream'
+                'Value': 'Pypedream'
             },
         ]
     )
 
     glue_policy_response = client.attach_role_policy(
-        RoleName='PipedreamGlueRole',
+        RoleName='PypedreamGlueRole',
         PolicyArn='arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole'
     )
 
 
     step_functions_role_response = client.create_role(
-        Path='/pipedream/',
-        RoleName='PipedreamStepFunctionsRole',
+        Path='/pypedream/',
+        RoleName='PypedreamStepFunctionsRole',
         AssumeRolePolicyDocument="""{
         "Version": "2012-10-17",
         "Statement": [
@@ -57,19 +57,19 @@ def deploy_roles():
         Tags=[
             {
                 'Key': 'CreatedBy',
-                'Value': 'Pipedream'
+                'Value': 'Pypedream'
             },
         ]
     )
 
     step_functions_lambda_policy_response = client.attach_role_policy(
-        RoleName='PipedreamStepFunctionsRole',
+        RoleName='PypedreamStepFunctionsRole',
         PolicyArn='arn:aws:iam::aws:policy/service-role/AWSLambdaRole'
     )
 
     step_functions_glue_policy_response = client.create_policy(
-        PolicyName='PipedreamStepFunctionsPolicy',
-        Path='/pipedream/',
+        PolicyName='PypedreamStepFunctionsPolicy',
+        Path='/pypedream/',
         PolicyDocument="""{
         "Version": "2012-10-17",
         "Statement": [
@@ -85,13 +85,13 @@ def deploy_roles():
         Tags=[
             {
                 'Key': 'CreatedBy',
-                'Value': 'Pipedream'
+                'Value': 'Pypedream'
             },
         ]
     )
 
     print(step_functions_glue_policy_response)
     step_functions_glue_policy_attachment_response = client.attach_role_policy(
-        RoleName='PipedreamStepFunctionsRole',
+        RoleName='PypedreamStepFunctionsRole',
         PolicyArn=step_functions_glue_policy_response["Policy"]["Arn"]
     )

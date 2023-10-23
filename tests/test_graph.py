@@ -15,9 +15,9 @@ class TestGetDataPaths(unittest.TestCase):
         self.assertEqual(
             self.results,
             [
-                "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/bronze/",
-                "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/silver/",
-                "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/gold/",
+                "s3://hb-machine-learning-bucket/pypedream/{branch-name}/data/bronze/",
+                "s3://hb-machine-learning-bucket/pypedream/{branch-name}/data/silver/",
+                "s3://hb-machine-learning-bucket/pypedream/{branch-name}/data/gold/",
             ],
         )
 
@@ -39,37 +39,37 @@ class TestGraphTrimming(unittest.TestCase):
     def test_input_paths_should_be_correct_for_first_node(self):
         self.assertEqual(
             self.results.nodes["transform"]["metadata"]["properties"]["DefaultArguments"]["--BRONZE_DATA_SOURCE"],
-            "s3://hb-machine-learning-bucket/pipedream/main/data/bronze/",
+            "s3://hb-machine-learning-bucket/pypedream/main/data/bronze/",
         )
 
     def test_input_paths_should_be_correct_for_subsequent_nodes(self):
         self.assertEqual(
             self.results.nodes["load"]["metadata"]["properties"]["DefaultArguments"]["--SILVER_DATA_SOURCE"],
-            "s3://hb-machine-learning-bucket/pipedream/test/data/silver/",
+            "s3://hb-machine-learning-bucket/pypedream/test/data/silver/",
         )
 
     def test_output_paths_should_be_correct(self):
         self.assertEqual(
             self.results.nodes["transform"]["metadata"]["output_data"],
-            {"silver": "s3://hb-machine-learning-bucket/pipedream/test/data/silver/"},
+            {"silver": "s3://hb-machine-learning-bucket/pypedream/test/data/silver/"},
         )
 
     def test_output_paths_should_be_correct_for_subsequent_nodes(self):
         self.assertEqual(
             self.results.nodes["load"]["metadata"]["properties"]["DefaultArguments"]["--GOLD_DATA_SINK"],
-            "s3://hb-machine-learning-bucket/pipedream/test/data/gold/",
+            "s3://hb-machine-learning-bucket/pypedream/test/data/gold/",
         )
 
     def test_job_name_should_be_correct(self):
         self.assertEqual(
             self.results.nodes["transform"]["metadata"]["properties"]["Name"],
-            "pipedream-transform-test",
+            "pypedream-transform-test",
         )
 
     def test_script_should_be_correct(self):
         self.assertEqual(
             self.results.nodes["transform"]["metadata"]["properties"]["Command"]["ScriptLocation"],
-            "s3://hb-machine-learning-bucket/pipedream/test/scripts/pipedream-transform-main.py",
+            "s3://hb-machine-learning-bucket/pypedream/test/scripts/pypedream-transform-main.py",
         )
 
 
@@ -98,7 +98,7 @@ class TestGraphBranchingExtract(unittest.TestCase):
     def test_output_paths_should_be_correct(self):
         self.assertEqual(
             self.results.nodes["extract"]["metadata"]["output_data"],
-            {"bronze": "s3://hb-machine-learning-bucket/pipedream/test/data/bronze/"},
+            {"bronze": "s3://hb-machine-learning-bucket/pypedream/test/data/bronze/"},
         )
 
 class TestGraphBranchingExtract(unittest.TestCase):
@@ -107,7 +107,7 @@ class TestGraphBranchingExtract(unittest.TestCase):
         self.results = dag_manager.get_script_location_of_node(self.G, "extract")
 
     def test_script_location_should_be_correct(self):
-        assert self.results == "s3://hb-machine-learning-bucket/pipedream/{branch-name}/scripts/pipedream-extract-main.py"
+        assert self.results == "s3://hb-machine-learning-bucket/pypedream/{branch-name}/scripts/pypedream-extract-main.py"
 
     
 

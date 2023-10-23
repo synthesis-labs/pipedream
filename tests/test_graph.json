@@ -3,9 +3,9 @@
   "multigraph": false,
   "graph": {
     "metadata": {
-      "pipeline_name": "pipedream",
+      "pipeline_name": "pypedream",
       "orchestration": "aws_stepfunctions",
-      "role_arn": "arn:aws:iam::296274010522:role/PipedreamStepFunctionRole",
+      "role_arn": "arn:aws:iam::{aws-account-number}}:role/PypedreamStepFunctionRole",
       "state": {
         "arn": null
       }
@@ -26,22 +26,22 @@
         "operation": "glue",
         "trigger": "ALL",
         "output_data": {
-          "bronze": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/bronze/"
+          "bronze": "s3://hb-machine-learning-bucket/pypedream/{branch-name}/data/bronze/"
         },
         "properties": {
-          "Name": "pipedream-extract-{branch-name}",
+          "Name": "pypedream-extract-{branch-name}",
           "Description": "",
-          "Role": "arn:aws:iam::296274010522:role/AWSGlueRDSMigrationRole",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/AWSGlueRDSMigrationRole",
           "CreatedOn": "2022-06-02 16:33:27.849000+02:00",
           "LastModifiedOn": "2022-06-02 16:33:27.849000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
-            "ScriptLocation": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/scripts/pipedream-extract-main.py",
+            "ScriptLocation": "s3://hb-machine-learning-bucket/pypedream/{branch-name}/scripts/pypedream-extract-main.py",
             "PythonVersion": "3"
           },
           "DefaultArguments": {
-            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--TempDir": "s3://aws-glue-assets-{aws-account-number}}-eu-west-1/temporary/",
             "--class": "GlueApp",
             "--enable-continuous-cloudwatch-log": "true",
             "--enable-glue-datacatalog": "true",
@@ -50,7 +50,7 @@
             "--enable-spark-ui": "true",
             "--job-bookmark-option": "job-bookmark-enable",
             "--job-language": "python",
-            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/"
+            "--spark-event-logs-path": "s3://aws-glue-assets-{aws-account-number}}-eu-west-1/sparkHistoryLogs/"
           },
           
           "job_params": {
@@ -72,22 +72,22 @@
         "operation": "glue",
         "trigger": "ALL",
         "output_data": {
-            "silver": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/silver/"
+            "silver": "s3://hb-machine-learning-bucket/pypedream/{branch-name}/data/silver/"
           },
         "properties": {
-          "Name": "pipedream-transform-{branch-name}",
+          "Name": "pypedream-transform-{branch-name}",
           "Description": "",
-          "Role": "arn:aws:iam::296274010522:role/AWSGlueRDSMigrationRole",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/AWSGlueRDSMigrationRole",
           "CreatedOn": "2022-06-02 16:36:44.887000+02:00",
           "LastModifiedOn": "2022-06-02 17:16:54.650000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
-            "ScriptLocation": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/scripts/pipedream-transform-main.py",
+            "ScriptLocation": "s3://hb-machine-learning-bucket/pypedream/{branch-name}/scripts/pypedream-transform-main.py",
             "PythonVersion": "3"
           },
           "DefaultArguments": {
-            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--TempDir": "s3://aws-glue-assets-{aws-account-number}}-eu-west-1/temporary/",
             "--class": "GlueApp",
             "--enable-continuous-cloudwatch-log": "true",
             "--enable-glue-datacatalog": "true",
@@ -96,7 +96,7 @@
             "--enable-spark-ui": "true",
             "--job-bookmark-option": "job-bookmark-enable",
             "--job-language": "python",
-            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/"
+            "--spark-event-logs-path": "s3://aws-glue-assets-{aws-account-number}}-eu-west-1/sparkHistoryLogs/"
           },
           
           "job_params": {},
@@ -116,22 +116,22 @@
         "operation": "glue",
         "trigger": "ALL",
         "output_data": {
-            "gold": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/data/gold/"
+            "gold": "s3://hb-machine-learning-bucket/pypedream/{branch-name}/data/gold/"
           },
         "properties": {
-          "Name": "pipedream-load-{branch-name}",
+          "Name": "pypedream-load-{branch-name}",
           "Description": "",
-          "Role": "arn:aws:iam::296274010522:role/AWSGlueRDSMigrationRole",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/AWSGlueRDSMigrationRole",
           "CreatedOn": "2022-06-02 16:39:04.196000+02:00",
           "LastModifiedOn": "2022-06-02 16:39:04.196000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
-            "ScriptLocation": "s3://hb-machine-learning-bucket/pipedream/{branch-name}/scripts/pipedream-load-main.py",
+            "ScriptLocation": "s3://hb-machine-learning-bucket/pypedream/{branch-name}/scripts/pypedream-load-main.py",
             "PythonVersion": "3"
           },
           "DefaultArguments": {
-            "--TempDir": "s3://aws-glue-assets-296274010522-eu-west-1/temporary/",
+            "--TempDir": "s3://aws-glue-assets-{aws-account-number}}-eu-west-1/temporary/",
             "--class": "GlueApp",
             "--enable-continuous-cloudwatch-log": "true",
             "--enable-glue-datacatalog": "true",
@@ -140,7 +140,7 @@
             "--enable-spark-ui": "true",
             "--job-bookmark-option": "job-bookmark-enable",
             "--job-language": "python",
-            "--spark-event-logs-path": "s3://aws-glue-assets-296274010522-eu-west-1/sparkHistoryLogs/"
+            "--spark-event-logs-path": "s3://aws-glue-assets-{aws-account-number}}-eu-west-1/sparkHistoryLogs/"
           },
           
           "job_params": {},

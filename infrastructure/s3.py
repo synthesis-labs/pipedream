@@ -17,7 +17,7 @@ class S3Manager:
         self.s3_filesystem.put(local_directory, bucket_name, recursive=True)
 
     def delete_bucket(self, bucket_name):
-        self.s3_filesystem.rm(f"{bucket_name}/pipedream/main/", recursive=True)
+        self.s3_filesystem.rm(f"{bucket_name}/pypedream/main/", recursive=True)
         response = self.s3_client.delete_bucket(Bucket=bucket_name)
         return response
 

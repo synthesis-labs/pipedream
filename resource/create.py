@@ -46,7 +46,7 @@ class DeploymentManager:
         role_arn = graph.graph["metadata"]["role_arn"]
         pipeline_name = f'{graph.graph["metadata"]["pipeline_name"]}-{graph.graph["metadata"]["branch"]}'
         arn = self.sfn_manager.create_step_function(
-            sfn_name=f"pipedream-{pipeline_name}",
+            sfn_name=f"pypedream-{pipeline_name}",
             role_arn=role_arn,
             definition=self.sfn_manager.build_asl(graph=graph),
         )

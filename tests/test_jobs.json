@@ -17,21 +17,21 @@
         "properties": {
           "Name": "cloudtrail_bp_test_etl_3e022fd0",
           "Description": "ETL Job for workflow cloudtrail_bp_test",
-          "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/service-role/AWSGlueServiceRole-test",
           "CreatedOn": "2020-09-14 10:00:31.821000+02:00",
           "LastModifiedOn": "2020-09-14 10:00:31.821000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "glueetl",
-            "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/glueetl/cloudtrail_incremental.py",
+            "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/glueetl/cloudtrail_incremental.py",
             "PythonVersion": "2"
           },
           "DefaultArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-continuous-cloudwatch-log": "true",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--job-bookmark-option": "job-bookmark-enable",
             "--region": "eu-west-1",
@@ -44,11 +44,11 @@
             "--version": "1"
           },
           "NonOverridableArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-continuous-cloudwatch-log": "true",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--job-bookmark-option": "job-bookmark-enable",
             "--region": "eu-west-1",
@@ -76,20 +76,20 @@
         "properties": {
           "Name": "cloudtrail_bp_test_post_crawl_57821555",
           "Description": "A job to change state to IMPORTING",
-          "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/service-role/AWSGlueServiceRole-test",
           "CreatedOn": "2020-09-14 10:00:32.009000+02:00",
           "LastModifiedOn": "2020-09-14 10:00:32.009000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "pythonshell",
-            "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/pythonshell/state_manager.py",
+            "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/pythonshell/state_manager.py",
             "PythonVersion": "2"
           },
           "DefaultArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -98,10 +98,10 @@
             "--transition_state": "IMPORTING"
           },
           "NonOverridableArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -125,20 +125,20 @@
         "properties": {
           "Name": "cloudtrail_bp_test_post_etl_f3e9473f",
           "Description": "A job to change state to COMPLETED",
-          "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/service-role/AWSGlueServiceRole-test",
           "CreatedOn": "2020-09-14 10:00:32.091000+02:00",
           "LastModifiedOn": "2020-09-14 10:00:32.091000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "pythonshell",
-            "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/pythonshell/state_manager.py",
+            "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/pythonshell/state_manager.py",
             "PythonVersion": "2"
           },
           "DefaultArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -147,10 +147,10 @@
             "--transition_state": "COMPLETED"
           },
           "NonOverridableArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -174,20 +174,20 @@
         "properties": {
           "Name": "cloudtrail_bp_test_post_failure_3f117988",
           "Description": "A job to change state to FAILED",
-          "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/service-role/AWSGlueServiceRole-test",
           "CreatedOn": "2020-09-14 10:00:32.189000+02:00",
           "LastModifiedOn": "2020-09-14 10:00:32.189000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "pythonshell",
-            "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/pythonshell/state_manager.py",
+            "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/pythonshell/state_manager.py",
             "PythonVersion": "2"
           },
           "DefaultArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -196,10 +196,10 @@
             "--transition_state": "FAILED"
           },
           "NonOverridableArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -223,20 +223,20 @@
         "properties": {
           "Name": "cloudtrail_bp_test_pre_crawl_86f55434",
           "Description": "A job to change state to DISCOVERING",
-          "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/service-role/AWSGlueServiceRole-test",
           "CreatedOn": "2020-09-14 10:00:31.904000+02:00",
           "LastModifiedOn": "2020-09-14 10:00:31.904000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "pythonshell",
-            "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/pythonshell/state_manager.py",
+            "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/pythonshell/state_manager.py",
             "PythonVersion": "2"
           },
           "DefaultArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -245,10 +245,10 @@
             "--transition_state": "DISCOVERING"
           },
           "NonOverridableArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -272,20 +272,20 @@
         "properties": {
           "Name": "cloudtrail_bp_test_stopped_c126dc95",
           "Description": "A job to change state to STOPPED",
-          "Role": "arn:aws:iam::296274010522:role/service-role/AWSGlueServiceRole-test",
+          "Role": "arn:aws:iam::{aws-account-number}}:role/service-role/AWSGlueServiceRole-test",
           "CreatedOn": "2020-09-14 10:00:32.306000+02:00",
           "LastModifiedOn": "2020-09-14 10:00:32.306000+02:00",
           "ExecutionProperty": { "MaxConcurrentRuns": 1 },
           "Command": {
             "Name": "pythonshell",
-            "ScriptLocation": "s3://aws-glue-assets-eu-west-1/scripts/pythonshell/state_manager.py",
+            "ScriptLocation": "s3://{aws-glue-assets-bucket}/scripts/pythonshell/state_manager.py",
             "PythonVersion": "2"
           },
           "DefaultArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",
@@ -294,10 +294,10 @@
             "--transition_state": "STOPPED"
           },
           "NonOverridableArguments": {
-            "--catalog_id": "296274010522",
-            "--creator_arn": "arn:aws:iam::296274010522:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
+            "--catalog_id": "{aws-account-number}}",
+            "--creator_arn": "arn:aws:iam::{aws-account-number}}:role/AWSReservedSSO_DeveloperAccess_a4a6262b8ec5160a",
             "--enable-metrics": "",
-            "--extra-py-files": "s3://aws-glue-assets-eu-west-1/scripts/lib/utils.py",
+            "--extra-py-files": "s3://{aws-glue-assets-bucket}/scripts/lib/utils.py",
             "--glue_endpoint": "https://glue.eu-west-1.amazonaws.com",
             "--region": "eu-west-1",
             "--source_table_prefix": "_cloudtrail_test__",

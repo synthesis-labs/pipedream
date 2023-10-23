@@ -53,7 +53,7 @@ This abstract view of the data pipeline is called the main abstract graph and it
 Defining output data paths
 ```
 "output_data": {
-            "bronze": "s3://aws-glue-pypedream-test-bucket/{branch-name}/data/bronze/"
+            "bronze": "s3://{aws-glue-pypedream-test-bucket}/{branch-name}/data/bronze/"
           },
 ```
 

@@ -37,7 +37,7 @@ branch_manager = branch_manager.Branch(utils.file_operations, BRANCH_DATA)
 
 
 def operation_parser(args):
-    parser = argparse.ArgumentParser(description="Pipedream Data Pipeline Manager")
+    parser = argparse.ArgumentParser(description="Pypedream Data Pipeline Manager")
 
     parser.add_argument(
         "operation",
